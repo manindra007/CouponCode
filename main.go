@@ -34,7 +34,7 @@ func main() {
 	http.HandleFunc("/applicable-coupons", func(w http.ResponseWriter, r *http.Request) {
 		switch r.Method {
 		case http.MethodPost:
-			createCoupon(w, r)
+			applicableCoupons(w, r)
 		default:
 			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
 		}
@@ -82,8 +82,9 @@ var (
 )
 
 type Product struct {
-	ID   int    `json:"id"`
-	Name string `json:"name"`
+	ID    int     `json:"id"`
+	Name  string  `json:"name"`
+	Price float64 `json:"price"`
 }
 
 type ProductQuantity struct {
